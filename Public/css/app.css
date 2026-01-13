@@ -26,7 +26,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    
+
 }
 
 .title {
@@ -34,7 +34,6 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 4vh;
-    /* background-color: green; */
 }
 
 
@@ -64,23 +63,55 @@ body {
 .containernumbers {
     background-color: var(--cal-bg);
     display: grid;
-    grid-template-columns: repeat(4,8vw);
+    grid-template-columns: repeat(4, 8vw);
     justify-content: center;
-    gap: 2vh 2vw;
+    gap: 3vh 2vw;
     padding-block: 2vh;
     color: var(--result-bg);
     border-radius: 10px;
     font-size: 25px;
     font-weight: 700;
 }
-.containernumbers p{
+
+.containernumbers p {
     background-color: var(--btn-primery-color);
     display: flex;
     justify-content: center;
     align-items: center;
     padding-block: 3vh;
     border-radius: 10px;
+    box-shadow:
+        0 6px 0 #b5b5b5,
+        0 8px 15px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    user-select: none;
 }
-/* .restet{
-    width: 50%;
-} */
+
+.containernumbers p:active {
+    transform: translateY(6px);
+}
+
+.containernumbers p:nth-last-child(2),
+.containernumbers p:last-child {
+    grid-column: span 2;
+    box-shadow:
+        0 6px 0 rgba(0, 0, 0, 0.35),
+        0 8px 15px rgba(0, 0, 0, 0.35);
+}
+.containernumbers .del{
+    box-shadow:
+        0 6px 0 rgba(0, 0, 0, 0.35),
+        0 8px 15px rgba(0, 0, 0, 0.35);
+}
+
+.containernumbers p:nth-last-child(2),
+.containernumbers .del {
+    color: var(--color-num);
+    background-color: var(--bd-bg-color);
+}
+
+.containernumbers p:last-child {
+    color: var(--color-num);
+    background-color: var(--eqaul);
+}
