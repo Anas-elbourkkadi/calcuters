@@ -17,9 +17,11 @@ let delet = () => {
 
 }
 let degite = (v) => {
-    result.textContent == 0
-        ? result.textContent = v
-        : result.textContent += v;
+    result.textContent =
+    (result.textContent === '0' || result.textContent === 'Error')
+        ? v
+        : result.textContent + v;
+
 }
 
 let check = () => {
@@ -65,7 +67,7 @@ let cal = () => {
             let cleanNumbers = num.filter(e => e != '');
             let cleanOpertors = operters.filter(e => e != '');
 
-            
+
             if (operters.includes('-') || operters.includes('+')) {
                 for (let i = 0; i < cleanOpertors.length; i++) {
                     if (cleanOpertors[i] == '+') {
@@ -81,16 +83,16 @@ let cal = () => {
                         cleanOpertors[i] = '';
                     }
 
-                   
+
 
                 }
 
             }
-            result.textContent=cleanNumbers[cleanNumbers.length-1];
-            cleanNumbers=[];
-            cleanOpertors=[];
-            num=[];
-            operters=[];
+            result.textContent = cleanNumbers[cleanNumbers.length - 1];
+            cleanNumbers = [];
+            cleanOpertors = [];
+            num = [];
+            operters = [];
 
         }
     }
