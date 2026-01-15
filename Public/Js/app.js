@@ -18,9 +18,9 @@ let delet = () => {
 }
 let degite = (v) => {
     result.textContent =
-    (result.textContent === '0' || result.textContent === 'Error')
-        ? v
-        : result.textContent + v;
+        (result.textContent === '0' || result.textContent === 'Error')
+            ? v
+            : result.textContent + v;
 
 }
 
@@ -46,9 +46,9 @@ let cal = () => {
             let operters = result.textContent.match(/[+\-x\/]/g);
             let total = 0;
 
-            if (operters.includes('x') || operters.includes('/')) {
-                for (let i = 0; i < operters.length; i++) {
 
+            for (let i = 0; i < operters.length; i++) {
+                if (operters.includes('x') || operters.includes('/')) {
                     if (operters[i] == 'x') {
                         total = parseFloat(num[i]) * parseFloat(num[i + 1]);
                         num[i + 1] = total;
@@ -61,15 +61,20 @@ let cal = () => {
                         num[i] = '';
                         operters[i] = '';
                     }
-                }
 
+
+                }
+                else{
+                    break
+                }
             }
             let cleanNumbers = num.filter(e => e != '');
             let cleanOpertors = operters.filter(e => e != '');
 
 
-            if (operters.includes('-') || operters.includes('+')) {
-                for (let i = 0; i < cleanOpertors.length; i++) {
+
+            for (let i = 0; i < cleanOpertors.length; i++) {
+                if (operters.includes('-') || operters.includes('+')) {
                     if (cleanOpertors[i] == '+') {
                         total = parseFloat(cleanNumbers[i]) + parseFloat(cleanNumbers[i + 1]);
                         cleanNumbers[i + 1] = total;
@@ -82,38 +87,40 @@ let cal = () => {
                         cleanNumbers[i] = '';
                         cleanOpertors[i] = '';
                     }
-
-
-
+                }
+                else{
+                    break
                 }
 
+
+
+
+
             }
+
+
             result.textContent = cleanNumbers[cleanNumbers.length - 1];
-            cleanNumbers = [];
-            cleanOpertors = [];
-            num = [];
-            operters = [];
 
         }
+
+
     }
-
-
 }
 
-numbers.addEventListener('click', (e) => {
-    if (listArry.includes(e.target.textContent)) {
-        if (e.target.textContent == 'reset') {
-            clear();
+    numbers.addEventListener('click', (e) => {
+        if (listArry.includes(e.target.textContent)) {
+            if (e.target.textContent == 'reset') {
+                clear();
+            }
+            else if (e.target.textContent == 'del') {
+                delet();
+            }
+            else if (e.target.textContent == '=') {
+                cal();
+            }
+            else {
+                degite(e.target.textContent);
+            }
         }
-        else if (e.target.textContent == 'del') {
-            delet();
-        }
-        else if (e.target.textContent == '=') {
-            cal();
-        }
-        else {
-            degite(e.target.textContent);
-        }
-    }
 
-})
+    })
